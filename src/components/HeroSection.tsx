@@ -10,6 +10,8 @@ const metrics = [
 ];
 
 export function HeroSection() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
   return (
     <section
       id="top"
@@ -69,8 +71,8 @@ export function HeroSection() {
             preload="metadata"
             aria-hidden="true"
           >
-            <source src="/hero-facility.webm" type="video/webm" />
-            <source src="/hero-facility.mp4" type="video/mp4" />
+            <source src={`${basePath}/hero-facility.webm`} type="video/webm" />
+            <source src={`${basePath}/hero-facility.mp4`} type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/60 to-dark/80" />
 
