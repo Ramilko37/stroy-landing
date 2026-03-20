@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Image from "next/image";
 
 export function Footer() {
   const [name, setName] = useState("");
@@ -24,13 +25,22 @@ export function Footer() {
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-white/60">
             Контакты
           </p>
-          <h3 className="mb-6 text-3xl font-bold">ТехЭксплуатация</h3>
+          <div className="mb-6 inline-flex items-center gap-3">
+            <Image
+              src="/logo-house.svg"
+              alt="Логотип ТехЭксплуатация"
+              width={48}
+              height={38}
+              className="h-10 w-12 rounded-md bg-white/90 p-1 object-contain"
+            />
+            <h3 className="text-3xl font-bold">ТехЭксплуатация</h3>
+          </div>
           <ul className="space-y-3 text-white/85">
-            <li>Адрес: г. Москва, Пресненская наб., 8</li>
+            <li>Адрес: Ступинский проезд, д. 1А</li>
             <li>
               Телефон:{" "}
-              <a href="tel:+78001234567" className="text-accent">
-                +7 (800) 123-45-67
+              <a href="tel:+79939265028" className="text-accent">
+                8-993-926-50-28
               </a>
             </li>
             <li>

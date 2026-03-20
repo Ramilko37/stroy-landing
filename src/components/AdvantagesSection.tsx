@@ -1,29 +1,24 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FileCheck2, Leaf, ShieldCheck, TrendingDown } from "lucide-react";
+import { BadgeCheck, ShieldCheck, TrendingDown } from "lucide-react";
 import { SectionWrapper } from "./ui/SectionWrapper";
 
 const items = [
   {
     icon: TrendingDown,
-    title: "Снижение риска аварий",
-    text: "Регулярное ТО предотвращает критические поломки и снижает вероятность дорогостоящего капитального ремонта.",
+    title: "Снижение затрат",
+    text: "Оптимизация режимов работы ИТП позволяет экономить на коммунальных платежах.",
   },
   {
     icon: ShieldCheck,
-    title: "Соответствие нормам",
-    text: "Поддерживаем объект в безопасном состоянии и соблюдаем требования отраслевых и государственных регламентов.",
+    title: "Безопасность",
+    text: "Предотвращение затоплений подвалов и выхода оборудования из строя.",
   },
   {
-    icon: Leaf,
-    title: "Энергоэффективность",
-    text: "Настройка и профилактика инженерных систем уменьшают перерасход ресурсов и эксплуатационные затраты.",
-  },
-  {
-    icon: FileCheck2,
-    title: "Комплексный подход",
-    text: "Клининг, технический аудит и ремонтные работы объединены в одном сервисном договоре.",
+    icon: BadgeCheck,
+    title: "Профессионализм",
+    text: "Работы выполняются аттестованным персоналом с опытом эксплуатации инженерных систем.",
   },
 ];
 
@@ -33,13 +28,13 @@ export function AdvantagesSection() {
       <div className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="mb-12 max-w-3xl">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-primary-light">
-            Почему это выгодно
+            Преимущества для клиента
           </p>
           <h2 className="text-3xl font-bold text-dark md:text-4xl">
-            Системное обслуживание защищает ваш бюджет и репутацию
+            Экономия, безопасность и прозрачный сервис
           </h2>
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {items.map((item, index) => (
             <motion.article
               key={item.title}

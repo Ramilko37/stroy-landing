@@ -1,0 +1,13 @@
+<svg width="272" height="239" viewBox="0 0 272 239" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">Логотип ТехЭксплуатация</title>
+  <desc id="logoDesc">Контур дома</desc>
+  <g filter="url(#shadow)">
+    <path d="M18 95L118 20L149 46V24H171V71L184 84" stroke="#1E3A5F" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter"/>
+    <path d="M48 95V178H252" stroke="#1E3A5F" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter"/>
+  </g>
+  <defs>
+    <filter id="shadow" x="9" y="12" width="253" height="177" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#0F172A" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+</svg>
