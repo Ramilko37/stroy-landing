@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import Image from "next/image";
 
 export function Footer() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -27,7 +28,7 @@ export function Footer() {
           </p>
           <div className="mb-6 inline-flex items-center gap-3">
             <Image
-              src="/logo-house.svg"
+              src={`${basePath}/logo-house.svg`}
               alt="Логотип ТехЭксплуатация"
               width={48}
               height={38}

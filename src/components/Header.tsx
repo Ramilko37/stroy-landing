@@ -14,6 +14,7 @@ const navItems = [
 ];
 
 export function Header() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -38,7 +39,7 @@ export function Header() {
           className="inline-flex items-center gap-3 text-[1.62rem] font-semibold tracking-[-0.02em] text-primary"
         >
           <Image
-            src="/logo-house.svg"
+            src={`${basePath}/logo-house.svg`}
             alt="Логотип ТехЭксплуатация"
             width={44}
             height={36}
