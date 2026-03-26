@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_landing_process_sections",
+  "info": {
+    "displayName": "Process Section"
+  },
+  "options": {},
+  "attributes": {
+    "badge": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "steps": {
+      "type": "component",
+      "component": "landing.process-step",
+      "repeatable": true,
+      "required": true,
+      "min": 1
+    }
+  }
+}

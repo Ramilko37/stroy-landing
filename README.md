@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stroy Landing + Local Strapi CMS
 
-## Getting Started
+Лендинг на Next.js с локальной Strapi админкой для редактирования всех текстов.
 
-First, run the development server:
+## Что реализовано
+
+- Все тексты лендинга вынесены в модель `landing-page` в Strapi.
+- На фронте подключен runtime fetch из `GET /api/public/landing-content`.
+- В `dev` фронт читает Strapi (`NEXT_PUBLIC_STRAPI_URL`).
+- В `prod` (GitHub Pages) фронт использует встроенный fallback-контент и не делает запросы к `localhost`.
+- В Strapi включен `Draft & Publish`.
+
+## Структура
+
+- `src/lib/landing-content.ts` - типы контента, fallback-данные, загрузка из CMS.
+- `src/components/HomeClient.tsx` - загрузка CMS-контента и прокидывание в секции.
+- `cms/` - Strapi v5 проект (контент-тип, компоненты, endpoint).
+- `docker-compose.yml` - локальный запуск Strapi + PostgreSQL.
+
+## Быстрый старт (локально)
+
+### 1. Frontend env
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+По умолчанию:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `NEXT_PUBLIC_STRAPI_URL=http://localhost:1337`
+- `NEXT_PUBLIC_ENABLE_CMS_IN_PROD=false`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. CMS env
 
-## Learn More
+```bash
+cp cms/.env.example cms/.env
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Поднять Strapi + Postgres
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm cms:up
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Проверка логов:
 
-## Deploy on Vercel
+```bash
+pnpm cms:logs
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Strapi админка: [http://localhost:1337/admin](http://localhost:1337/admin)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+При первом запуске создайте admin-пользователя. Затем откройте `Content Manager -> Landing Page`, внесите правки и нажмите `Publish`.
+
+### 4. Запустить лендинг
+
+```bash
+pnpm dev
+```
+
+Лендинг: [http://localhost:3000](http://localhost:3000)
+
+После `Publish` в Strapi обновите страницу лендинга - тексты подтянутся без правок кода.
+
+## Публичный endpoint
+
+`GET http://localhost:1337/api/public/landing-content`
+
+- endpoint только на чтение,
+- без авторизации,
+- отдает опубликованную версию контента (published).
+
+## Команды
+
+```bash
+pnpm dev          # frontend dev
+pnpm build        # frontend build (static export)
+pnpm lint         # frontend lint
+pnpm cms:up       # поднять Strapi + Postgres
+pnpm cms:logs     # логи CMS
+pnpm cms:down     # остановить контейнеры
+```
+
+## Текущий production-режим
+
+Сейчас проект остается статическим (`next export`) для GitHub Pages. Поэтому production-сайт использует fallback-тексты из кода, пока Strapi не будет вынесен на публичный хост (VPS/PaaS).
+
+Когда появится публичный CMS URL:
+
+1. Укажите публичный `NEXT_PUBLIC_STRAPI_URL`.
+2. Включите `NEXT_PUBLIC_ENABLE_CMS_IN_PROD=true`.

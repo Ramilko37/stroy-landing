@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_landing_header_sections",
+  "info": {
+    "displayName": "Header Section"
+  },
+  "options": {},
+  "attributes": {
+    "brandName": {
+      "type": "string",
+      "required": true
+    },
+    "menuAriaLabel": {
+      "type": "string",
+      "required": true
+    },
+    "ctaLabel": {
+      "type": "string",
+      "required": true
+    },
+    "phoneDisplay": {
+      "type": "string",
+      "required": true
+    },
+    "phoneHref": {
+      "type": "string",
+      "required": true
+    },
+    "navItems": {
+      "type": "component",
+      "component": "landing.nav-item",
+      "repeatable": true,
+      "required": true,
+      "min": 1
+    }
+  }
+}

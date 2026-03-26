@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const isProd = process.env.NODE_ENV === "production";
+const isGithubPagesBuild = process.env.GITHUB_PAGES === "true";
 const repoName = "stroy-landing";
 
 const nextConfig: NextConfig = {
@@ -9,10 +9,10 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: isProd ? `/${repoName}` : "",
-  assetPrefix: isProd ? `/${repoName}/` : "",
+  basePath: isGithubPagesBuild ? `/${repoName}` : "",
+  assetPrefix: isGithubPagesBuild ? `/${repoName}/` : "",
   env: {
-    NEXT_PUBLIC_BASE_PATH: isProd ? `/${repoName}` : "",
+    NEXT_PUBLIC_BASE_PATH: isGithubPagesBuild ? `/${repoName}` : "",
   },
 };
 

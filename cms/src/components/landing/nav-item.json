@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_landing_nav_items",
+  "info": {
+    "displayName": "Nav Item"
+  },
+  "options": {},
+  "attributes": {
+    "href": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "collectionName": "components_landing_footer_sections",
+  "info": {
+    "displayName": "Footer Section"
+  },
+  "options": {},
+  "attributes": {
+    "badge": {
+      "type": "string",
+      "required": true
+    },
+    "brandName": {
+      "type": "string",
+      "required": true
+    },
+    "addressLabel": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "phoneLabel": {
+      "type": "string",
+      "required": true
+    },
+    "phoneDisplay": {
+      "type": "string",
+      "required": true
+    },
+    "phoneHref": {
+      "type": "string",
+      "required": true
+    },
+    "emailLabel": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "emailHref": {
+      "type": "string",
+      "required": true
+    },
+    "formTitle": {
+      "type": "string",
+      "required": true
+    },
+    "nameLabel": {
+      "type": "string",
+      "required": true
+    },
+    "namePlaceholder": {
+      "type": "string",
+      "required": true
+    },
+    "phoneInputLabel": {
+      "type": "string",
+      "required": true
+    },
+    "phonePlaceholder": {
+      "type": "string",
+      "required": true
+    },
+    "submitButtonLabel": {
+      "type": "string",
+      "required": true
+    },
+    "successMessage": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

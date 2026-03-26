@@ -4,16 +4,16 @@ import { Menu, Phone, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { LandingContent } from "@/lib/landing-content";
 import { Button } from "./ui/Button";
 
-const navItems = [
-  { href: "#services", label: "ИТП" },
-  { href: "#building-systems", label: "Системы здания" },
-  { href: "#advantages", label: "Преимущества" },
-  { href: "#contacts", label: "Контакты" },
-];
+type HeaderSectionContent = LandingContent["header"];
 
-export function Header() {
+type HeaderProps = {
+  content: HeaderSectionContent;
+};
+
+export function Header({ content }: HeaderProps) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,11 +46,11 @@ export function Header() {
             className="h-9 w-11 object-contain"
             priority
           />
-          <span className="hidden sm:inline [text-wrap:balance]">ТехЭксплуатация</span>
+          <span className="hidden sm:inline [text-wrap:balance]">{content.brandName}</span>
         </Link>
 
         <nav className="hidden items-center gap-9 lg:flex">
-          {navItems.map((item) => (
+          {content.navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -63,21 +63,21 @@ export function Header() {
 
         <div className="hidden items-center gap-5 lg:flex">
           <a
-            href="tel:+79939265028"
+            href={content.phoneHref}
             className="inline-flex items-center gap-2 text-[1rem] font-semibold tracking-[0.003em] text-primary"
           >
             <Phone size={16} />
-            8-993-926-50-28
+            {content.phoneDisplay}
           </a>
           <Button href="#contacts" className="px-6 py-3 text-[0.93rem] tracking-[0.005em]">
-            Вызвать инженера
+            {content.ctaLabel}
           </Button>
         </div>
 
         <button
           type="button"
           onClick={() => setIsOpen((prev) => !prev)}
-          aria-label="Открыть меню"
+          aria-label={content.menuAriaLabel}
           className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-primary/20 text-primary lg:hidden"
         >
           {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -87,7 +87,7 @@ export function Header() {
       {isOpen ? (
         <div className="border-t border-primary/10 bg-white/96 px-4 pb-5 pt-4 shadow-[0_20px_36px_-34px_rgba(20,35,63,0.8)] backdrop-blur-xl lg:hidden">
           <nav className="mb-4 flex flex-col gap-2">
-            {navItems.map((item) => (
+            {content.navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -99,14 +99,14 @@ export function Header() {
             ))}
           </nav>
           <a
-            href="tel:+79939265028"
+            href={content.phoneHref}
             className="mb-3 inline-flex min-h-11 items-center gap-2 text-[1rem] font-semibold tracking-[0.003em] text-primary"
           >
             <Phone size={16} />
-            8-993-926-50-28
+            {content.phoneDisplay}
           </a>
           <Button href="#contacts" className="w-full text-[0.94rem] tracking-[0.004em]">
-            Вызвать инженера
+            {content.ctaLabel}
           </Button>
         </div>
       ) : null}

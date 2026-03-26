@@ -1,0 +1,68 @@
+services:
+  cms-db:
+    image: postgres:16-alpine
+    container_name: stroy-landing-cms-db-prod
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - cms_db_data_prod:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USERNAME} -d ${DATABASE_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  cms:
+    build:
+      context: ./cms
+      dockerfile: Dockerfile
+    container_name: stroy-landing-cms-prod
+    restart: unless-stopped
+    depends_on:
+      cms-db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 1337
+      PUBLIC_URL: ${CMS_PUBLIC_URL}
+      APP_KEYS: ${APP_KEYS}
+      API_TOKEN_SALT: ${API_TOKEN_SALT}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+      JWT_SECRET: ${JWT_SECRET}
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: cms-db
+      DATABASE_PORT: 5432
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_SCHEMA: public
+      DATABASE_SSL: "false"
+      CORS_ORIGIN: ${CORS_ORIGIN}
+    command: ["npm", "run", "start"]
+    volumes:
+      - cms_uploads_prod:/opt/app/public/uploads
+    expose:
+      - "1337"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        NEXT_PUBLIC_STRAPI_URL: ${NEXT_PUBLIC_STRAPI_URL}
+        NEXT_PUBLIC_ENABLE_CMS_IN_PROD: ${NEXT_PUBLIC_ENABLE_CMS_IN_PROD}
+    container_name: stroy-landing-frontend-prod
+    restart: unless-stopped
+    depends_on:
+      - cms
+    ports:
+      - "80:80"
+
+volumes:
+  cms_db_data_prod:
+  cms_uploads_prod:

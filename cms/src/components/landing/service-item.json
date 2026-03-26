@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_landing_service_items",
+  "info": {
+    "displayName": "Service Item"
+  },
+  "options": {},
+  "attributes": {
+    "iconKey": {
+      "type": "enumeration",
+      "enum": ["activity", "wrench", "gauge", "clipboardCheck", "network", "shieldAlert", "snowflake"],
+      "default": "activity",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

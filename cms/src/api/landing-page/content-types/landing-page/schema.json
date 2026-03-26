@@ -1,0 +1,67 @@
+{
+  "kind": "singleType",
+  "collectionName": "landing_pages",
+  "info": {
+    "singularName": "landing-page",
+    "pluralName": "landing-pages",
+    "displayName": "Landing Page",
+    "description": "Editable landing content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "seoTitle": {
+      "type": "string",
+      "required": true,
+      "maxLength": 140
+    },
+    "seoDescription": {
+      "type": "text",
+      "required": true
+    },
+    "header": {
+      "type": "component",
+      "component": "landing.header-section",
+      "repeatable": false,
+      "required": true
+    },
+    "hero": {
+      "type": "component",
+      "component": "landing.hero-section",
+      "repeatable": false,
+      "required": true
+    },
+    "services": {
+      "type": "component",
+      "component": "landing.services-section",
+      "repeatable": false,
+      "required": true
+    },
+    "advantages": {
+      "type": "component",
+      "component": "landing.advantages-section",
+      "repeatable": false,
+      "required": true
+    },
+    "process": {
+      "type": "component",
+      "component": "landing.process-section",
+      "repeatable": false,
+      "required": true
+    },
+    "trust": {
+      "type": "component",
+      "component": "landing.trust-section",
+      "repeatable": false,
+      "required": true
+    },
+    "footer": {
+      "type": "component",
+      "component": "landing.footer-section",
+      "repeatable": false,
+      "required": true
+    }
+  }
+}

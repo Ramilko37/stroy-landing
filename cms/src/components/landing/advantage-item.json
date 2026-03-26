@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_landing_advantage_items",
+  "info": {
+    "displayName": "Advantage Item"
+  },
+  "options": {},
+  "attributes": {
+    "iconKey": {
+      "type": "enumeration",
+      "enum": ["trendingDown", "shieldCheck", "badgeCheck"],
+      "default": "badgeCheck",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

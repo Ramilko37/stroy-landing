@@ -1,0 +1,51 @@
+{
+  "collectionName": "components_landing_hero_sections",
+  "info": {
+    "displayName": "Hero Section"
+  },
+  "options": {},
+  "attributes": {
+    "badge": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "primaryCtaLabel": {
+      "type": "string",
+      "required": true
+    },
+    "chips": {
+      "type": "component",
+      "component": "landing.hero-chip",
+      "repeatable": true,
+      "required": true,
+      "min": 1
+    },
+    "spotlightBadge": {
+      "type": "string",
+      "required": true
+    },
+    "spotlightTitle": {
+      "type": "string",
+      "required": true
+    },
+    "spotlightDescription": {
+      "type": "text",
+      "required": true
+    },
+    "metrics": {
+      "type": "component",
+      "component": "landing.hero-metric",
+      "repeatable": true,
+      "required": true,
+      "min": 1
+    }
+  }
+}

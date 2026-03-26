@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_landing_hero_metrics",
+  "info": {
+    "displayName": "Hero Metric"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "detail": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

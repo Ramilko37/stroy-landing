@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_landing_hero_chips",
+  "info": {
+    "displayName": "Hero Chip"
+  },
+  "options": {},
+  "attributes": {
+    "iconKey": {
+      "type": "enumeration",
+      "enum": ["badgeCheck", "calendarClock", "shieldCheck"],
+      "default": "badgeCheck",
+      "required": true
+    },
+    "text": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

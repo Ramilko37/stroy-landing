@@ -2,27 +2,22 @@
 
 import { motion } from "framer-motion";
 import { BadgeCheck, CalendarClock, ShieldCheck } from "lucide-react";
+import { HeroChipIconKey, LandingContent } from "@/lib/landing-content";
 import { Button } from "./ui/Button";
 
-const metrics = [
-  {
-    value: "24/7",
-    label: "Аварийная поддержка объекта",
-    detail: "Оперативное устранение неисправностей без простоев.",
-  },
-  {
-    value: "ИТП",
-    label: "Контроль по режимным картам",
-    detail: "Стабильная работа узлов и контроль параметров теплоносителя.",
-  },
-  {
-    value: "Экономия",
-    label: "Оптимизация коммунальных затрат",
-    detail: "Балансировка режимов для эффективного теплопотребления.",
-  },
-];
+const chipIconMap: Record<HeroChipIconKey, typeof BadgeCheck> = {
+  badgeCheck: BadgeCheck,
+  calendarClock: CalendarClock,
+  shieldCheck: ShieldCheck,
+};
 
-export function HeroSection() {
+type HeroSectionContent = LandingContent["hero"];
+
+type HeroSectionProps = {
+  content: HeroSectionContent;
+};
+
+export function HeroSection({ content }: HeroSectionProps) {
   return (
     <section
       id="top"
@@ -38,7 +33,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
           >
-            Эксплуатация и ИТП
+            {content.badge}
           </motion.p>
           <motion.h1
             className="mb-6 max-w-[14ch] text-[clamp(2.4rem,5vw,4.2rem)] font-bold leading-[0.98] tracking-[-0.02em] text-dark [text-wrap:balance]"
@@ -46,7 +41,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Техническое обслуживание зданий и ИТП
+            {content.title}
           </motion.h1>
           <motion.p
             className="mb-9 max-w-[52ch] text-[1.125rem] font-medium leading-[1.72] tracking-[-0.006em] text-dark/72"
@@ -54,9 +49,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Комплекс работ по поддержанию работоспособности инженерных систем,
-            конструктивных элементов здания и обеспечению их безаварийной
-            эксплуатации.
+            {content.description}
           </motion.p>
           <motion.div
             className="mb-7"
@@ -68,7 +61,7 @@ export function HeroSection() {
               href="#contacts"
               className="px-7 py-3.5 text-[0.98rem] tracking-[0.005em] shadow-[0_12px_26px_-16px_rgba(245,158,11,0.95)]"
             >
-              Получить план обслуживания
+              {content.primaryCtaLabel}
             </Button>
           </motion.div>
 
@@ -78,18 +71,19 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.4 }}
           >
-            <span className="inline-flex min-h-11 items-center gap-2 rounded-full border border-primary/15 bg-white/85 px-4 text-[0.92rem] leading-none tracking-[0.003em] text-dark/78">
-              <BadgeCheck size={16} className="text-primary" />
-              Аттестованный персонал
-            </span>
-            <span className="inline-flex min-h-11 items-center gap-2 rounded-full border border-primary/15 bg-white/85 px-4 text-[0.92rem] leading-none tracking-[0.003em] text-dark/78">
-              <CalendarClock size={16} className="text-primary" />
-              Регламентная отчетность
-            </span>
-            <span className="inline-flex min-h-11 items-center gap-2 rounded-full border border-primary/15 bg-white/85 px-4 text-[0.92rem] leading-none tracking-[0.003em] text-dark/78">
-              <ShieldCheck size={16} className="text-primary" />
-              Безопасная эксплуатация
-            </span>
+            {content.chips.map((chip) => {
+              const Icon = chipIconMap[chip.iconKey] ?? BadgeCheck;
+
+              return (
+                <span
+                  key={`${chip.iconKey}-${chip.text}`}
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full border border-primary/15 bg-white/85 px-4 text-[0.92rem] leading-none tracking-[0.003em] text-dark/78"
+                >
+                  <Icon size={16} className="text-primary" />
+                  {chip.text}
+                </span>
+              );
+            })}
           </motion.div>
         </div>
 
@@ -101,19 +95,18 @@ export function HeroSection() {
         >
           <div className="mb-6 rounded-2xl border border-primary/10 bg-[linear-gradient(150deg,#1e3a5f_0%,#2a5298_100%)] p-5 text-white">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/72">
-              Контроль без простоев
+              {content.spotlightBadge}
             </p>
             <p className="mt-3 text-[1.18rem] font-semibold leading-[1.25] tracking-[-0.01em]">
-              Паспорт обслуживания объекта
+              {content.spotlightTitle}
             </p>
             <p className="mt-2 text-[0.94rem] leading-[1.6] tracking-[0.002em] text-white/80">
-              График работ, параметры ИТП, осмотры конструкций и аварийные
-              регламенты в единой системе.
+              {content.spotlightDescription}
             </p>
           </div>
 
           <div className="grid gap-3">
-            {metrics.map((item) => (
+            {content.metrics.map((item) => (
               <article
                 key={item.value}
                 className="rounded-2xl border border-primary/12 bg-white p-4 shadow-[0_10px_25px_-20px_rgba(30,58,95,0.55)]"

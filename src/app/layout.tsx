@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { fallbackLandingContent } from "@/lib/landing-content";
 import "./globals.css";
 
 const inter = Inter({
@@ -9,9 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ТехЭксплуатация | Техническое обслуживание зданий и ИТП",
-  description:
-    "Комплекс работ по поддержанию работоспособности инженерных систем, конструктивных элементов здания и обеспечению их безаварийной эксплуатации.",
+  title: fallbackLandingContent.seoTitle,
+  description: fallbackLandingContent.seoDescription,
 };
 
 export default function RootLayout({

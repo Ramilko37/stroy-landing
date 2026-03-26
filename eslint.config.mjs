@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Strapi uses CommonJS conventions in app config/server files.
+    "cms/**",
   ]),
 ]);
 

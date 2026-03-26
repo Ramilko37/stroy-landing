@@ -1,47 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { LandingContent } from "@/lib/landing-content";
 import { SectionWrapper } from "./ui/SectionWrapper";
 
-const steps = [
-  {
-    title: "Первичный осмотр объекта",
-    description:
-      "Проводим диагностику инженерных систем и конструктивных элементов, фиксируем зоны риска.",
-  },
-  {
-    title: "Согласование регламента",
-    description:
-      "Формируем график осмотров и перечень обязательных профилактических работ по ИТП и зданию.",
-  },
-  {
-    title: "Плановое и сезонное обслуживание",
-    description:
-      "Выполняем регламентные работы, подготовку к зимнему периоду и текущее устранение замечаний.",
-  },
-  {
-    title: "Документация и 24/7 поддержка",
-    description:
-      "Ведем журналы, акты и технические карты, обеспечивая оперативное реагирование на аварии.",
-  },
-];
+type ProcessSectionContent = LandingContent["process"];
 
-export function ProcessSection() {
+type ProcessSectionProps = {
+  content: ProcessSectionContent;
+};
+
+export function ProcessSection({ content }: ProcessSectionProps) {
   return (
     <SectionWrapper id="process" className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       <div className="mb-12 max-w-3xl">
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-primary-light">
-          Как мы работаем
+          {content.badge}
         </p>
-        <h2 className="text-3xl font-bold text-dark md:text-4xl">
-          Пошаговая организация обслуживания объекта
-        </h2>
+        <h2 className="text-3xl font-bold text-dark md:text-4xl">{content.title}</h2>
       </div>
 
       <div className="relative">
         <div className="absolute left-6 top-0 hidden h-full w-px bg-primary/20 md:block" />
         <div className="grid gap-6">
-          {steps.map((step, index) => (
+          {content.steps.map((step, index) => (
             <motion.article
               key={step.title}
               className="relative rounded-2xl border border-primary/10 bg-white p-6 pl-14 shadow-sm md:pl-16"
